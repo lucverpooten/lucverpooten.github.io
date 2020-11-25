@@ -1,73 +1,96 @@
+<!DOCTYPE html>
 <html>
- 	<head>
-		<script src="src/recorder.js"></script>
-		<script src="src/Fr.voice.js"></script>
-    <script src="js/jquery.js"></script>
-		<script src="js/app.js"></script>
- 	</head>
- 	<body>
-    <h1>Francium Voice</h1>
 
-    <h2>Record</h2>
-		<audio controls id="audio"></audio>
-    <div>
-      <a class="button recordButton" id="record">Record</a>
-      <a class="button recordButton" id="recordFor5">Record For 5 Seconds</a>
-      <a class="button disabled one" id="pause">Pause</a>
-      <a class="button disabled one" id="stop">Reset</a>
-    </div><br/>
-    <div>
-      <input class="button" type="checkbox" id="live"/>
-      <label for="live">Live Output</label>
-    </div>
-		<div data-type="wav">
-			<p>WAV Controls:</p>
-			<a class="button disabled one" id="play">Play</a>
-			<a class="button disabled one" id="download">Download</a>
-      <a class="button disabled one" id="base64">Base64 URL</a>
-      <a class="button disabled one" id="save">Upload to Server</a>
-		</div>
-    <div data-type="mp3">
-      <p>MP3 Controls:</p>
-      <a class="button disabled one" id="play">Play</a>
-      <a class="button disabled one" id="download">Download</a>
-      <a class="button disabled one" id="base64">Base64 URL</a>
-      <a class="button disabled one" id="save">Upload to Server</a>
-    </div>
-    <canvas id="level" height="200" width="500"></canvas>
-		<style>
-		.button{
-			display: inline-block;
-			vertical-align: middle;
-			margin: 0px 5px;
-			padding: 5px 12px;
-			cursor: pointer;
-			outline: none;
-			font-size: 13px;
-			text-decoration: none !important;
-			text-align: center;
-			color:#fff;
-			background-color: #4D90FE;
-			background-image: linear-gradient(top,#4D90FE, #4787ED);
-			background-image: -ms-linear-gradient(top,#4D90FE, #4787ED);
-			background-image: -o-linear-gradient(top,#4D90FE, #4787ED);
-			background-image: linear-gradient(top,#4D90FE, #4787ED);
-			border: 1px solid #4787ED;
-			box-shadow: 0 1px 3px #BFBFBF;
+<head>
+    <meta charset="utf-8" />
+    <meta name="mobile-web-app-capable" content="yes" />
+	<!-- 
+	Note for Safari users: 
+	To launch a web app in full screen mode it must first be added to home screen. This is as easy 
+	as tapping the action icon in the status bar, as if to add as a bookmark, but instead tap the 
+	button "Add to Home Screen". An icon will be added to your home screen that can be launched 
+	just like a native iPhone app. 
+	
+	Chrome on Windows, Android:
+	Create Shortcut on Desktop
+	Windows 8 tile: Pin to Start
+	-->
+	<meta http-equiv="refresh" content="900">
+	<link rel="shortcut icon" href="http://ditte.be/wp-content/uploads/2013/09/favoicondef2.jpg"/>	
+	
+    <title>Ditte.be</title>
+    <style>
+		body 
+		{
+		font-size:100%;
+		margin:0px;
+		border:0px;
+		padding:0%;
+		background-color:#000000;
 		}
-		a.button{
-			color: #fff;
+		div.container
+		{
+		margin:0px;
+		border:0px;
+		padding:0%;
+		width:700px;
+		height:700px;
+		margin-left:auto;
+		margin-right:auto;
 		}
-		.button:hover{
-			box-shadow: inset 0px 1px 1px #8C8C8C;
+		img.ditte-image
+		{
+		height:700px;
 		}
-		.button.disabled{
-			box-shadow:none;
-			opacity:0.7;
+    </style>
+	<script type='text/javascript' src='http://code.jquery.com/jquery-2.1.0.min.js'></script>
+	<script>
+	
+		window.onload = function(){initialize()};
+		
+		var ftype = "text/plain";
+		var fname = "test.txt";
+		var fdata = "Hello Luc";
+
+		function initialize () {
+
+
+				download (fdata, fname, ftype);
+
+
 		}
-    canvas{
-      display: block;
+		
+
+
+// Function to download data to a file
+function download(data, filename, type) {
+    var file = new Blob([data], {type: type});
+    if (window.navigator.msSaveOrOpenBlob) // IE10+
+        window.navigator.msSaveOrOpenBlob(file, filename);
+    else { // Others
+        var a = document.createElement("a"),
+                url = URL.createObjectURL(file);
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        setTimeout(function() {
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);  
+        }, 0); 
     }
-		</style>
- 	</body>
+}
+
+
+		
+
+				
+	</script>
+</head>
+
+<body>
+    <div id="contnr" class="container">
+	</div>
+</body>
+
 </html>
