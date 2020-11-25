@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html>
  	<head>
 		<script src="src/recorder.js"></script>
@@ -8,11 +7,7 @@
  	</head>
  	<body>
     <h1>Francium Voice</h1>
-    <p>Created By <a href='http://subinsb.com'>Subin Siby</a> & Open Source community</p>
-    <p>
-      <h2>NOTE</h2>
-      <p>Since Chrome version 47, Voice Recording works only on HTTPS sites. You can see the demo on HTTPS <a href="https://demos.subinsb.com/jquery/voice/">here</a>.</p>
-    </p>
+
     <h2>Record</h2>
 		<audio controls id="audio"></audio>
     <div>
